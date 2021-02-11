@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "dontburnmystuff",
+  "version": "${version}",
+  "name": "Don't Burn My Stuff",
+  "description": "Apply Fire Protection to your items to make them fireproof",
+  "authors": [
+    "DaFuqs"
+  ],
+  "contact": {
+    "website": "https://github.com/DaFuqs/DontBurnMyStuff",
+    "repo": "https://github.com/DaFuqs/DontBurnMyStuff"
+  },
+  "license": "MIT",
+  "icon": "assets/DontBurnMyStuff/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "de.dafuqs.dontburnmystuff.DontBurnMyStuff"
+    ]
+  },
+  "mixins": [
+    "DontBurnMyStuff.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.1",
+    "fabric": "*",
+    "minecraft": ">=1.16.5"
+  }
+}

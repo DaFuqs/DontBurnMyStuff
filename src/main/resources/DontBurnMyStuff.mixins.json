@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "de.dafuqs.dontburnmystuff.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "EnchantmentMixin",
+    "ItemEntityMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
