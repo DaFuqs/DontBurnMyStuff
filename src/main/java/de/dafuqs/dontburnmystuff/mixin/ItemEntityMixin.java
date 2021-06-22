@@ -1,5 +1,7 @@
 package de.dafuqs.dontburnmystuff.mixin;
 
+import de.dafuqs.dontburnmystuff.DontBurnMyStuff;
+import de.dafuqs.dontburnmystuff.config.DontBurnMyStuffConfig;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.ItemEntity;
@@ -17,9 +19,14 @@ public class ItemEntityMixin {
         ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
 
         if(itemStack != ItemStack.EMPTY) {
-            int fireProtectionLevel = EnchantmentHelper.getLevel(Enchantments.FIRE_PROTECTION, itemStack);
-            if(fireProtectionLevel > 0) {
+            int minFireProtectionLevelRequired = DontBurnMyStuff.getMinFireProtectionLevelRequired();
+            if(minFireProtectionLevelRequired == 0) {
                 callbackInfoReturnable.setReturnValue(true);
+            } else {
+                int fireProtectionLevel = EnchantmentHelper.getLevel(Enchantments.FIRE_PROTECTION, itemStack);
+                if(fireProtectionLevel >= minFireProtectionLevelRequired) {
+                    callbackInfoReturnable.setReturnValue(true);
+                }
             }
         }
     }

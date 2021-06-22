@@ -1,5 +1,6 @@
 package de.dafuqs.dontburnmystuff.mixin;
 
+import de.dafuqs.dontburnmystuff.DontBurnMyStuff;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.ProtectionEnchantment;
 import net.minecraft.item.ItemStack;
@@ -13,10 +14,14 @@ public class EnchantmentMixin {
 
     @Inject(method="Lnet/minecraft/enchantment/Enchantment;isAcceptableItem(Lnet/minecraft/item/ItemStack;)Z", at=@At("HEAD"), cancellable = true)
     private void isAcceptableItem(ItemStack stack, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-        if((Object)this instanceof ProtectionEnchantment) {
-            ProtectionEnchantment protectionEnchantment = (ProtectionEnchantment) (Object) this;
-            if(protectionEnchantment.protectionType == ProtectionEnchantment.Type.FIRE) {
-                callbackInfoReturnable.setReturnValue(true);
+
+        int minFireProtectionLevelRequired = DontBurnMyStuff.getMinFireProtectionLevelRequired();
+        if(minFireProtectionLevelRequired > 0) {
+            if ((Object) this instanceof ProtectionEnchantment) {
+                ProtectionEnchantment protectionEnchantment = (ProtectionEnchantment) (Object) this;
+                if (protectionEnchantment.protectionType == ProtectionEnchantment.Type.FIRE) {
+                    callbackInfoReturnable.setReturnValue(true);
+                }
             }
         }
     }

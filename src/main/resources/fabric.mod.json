@@ -12,19 +12,22 @@
     "repo": "https://github.com/DaFuqs/DontBurnMyStuff"
   },
   "license": "MIT",
-  "icon": "assets/DontBurnMyStuff/icon.png",
+  "icon": "assets/dontburnmystuff/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       "de.dafuqs.dontburnmystuff.DontBurnMyStuff"
+    ],
+    "modmenu": [
+      "de.dafuqs.dontburnmystuff.config.ModMenuConfig"
     ]
   },
   "mixins": [
     "DontBurnMyStuff.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.1",
+    "fabricloader": ">=0.11.3",
     "fabric": "*",
-    "minecraft": ">=1.16.5"
+    "minecraft": ">=1.17.0"
   }
 }
