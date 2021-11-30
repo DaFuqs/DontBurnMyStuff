@@ -12,13 +12,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Enchantment.class)
 public class EnchantmentMixin {
 
-    @Inject(method="Lnet/minecraft/enchantment/Enchantment;isAcceptableItem(Lnet/minecraft/item/ItemStack;)Z", at=@At("HEAD"), cancellable = true)
+    @Inject(method= "isAcceptableItem(Lnet/minecraft/item/ItemStack;)Z", at=@At("HEAD"), cancellable = true)
     private void isAcceptableItem(ItemStack stack, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-
         int minFireProtectionLevelRequired = DontBurnMyStuff.getMinFireProtectionLevelRequired();
         if(minFireProtectionLevelRequired > 0) {
-            if ((Object) this instanceof ProtectionEnchantment) {
-                ProtectionEnchantment protectionEnchantment = (ProtectionEnchantment) (Object) this;
+            if ((Object) this instanceof ProtectionEnchantment protectionEnchantment) {
                 if (protectionEnchantment.protectionType == ProtectionEnchantment.Type.FIRE) {
                     callbackInfoReturnable.setReturnValue(true);
                 }
