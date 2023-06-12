@@ -1,6 +1,5 @@
 {
   "text.autoconfig.DontBurnMyStuff.option.minFireProtectionLevelRequired": "Minimum Fire Protection level to prevent burning",
-  "text.autoconfig.DontBurnMyStuff.option.minFireProtectionLevelRequired.@Tooltip[0]": "Minimum level of Fire Protection on an item to prevent it from burning.",
-  "text.autoconfig.DontBurnMyStuff.option.minFireProtectionLevelRequired.@Tooltip[1]": "0 means items don't burn in general",
-  "text.autoconfig.DontBurnMyStuff.option.minFireProtectionLevelRequired.@Tooltip[2]": "(too many items can cause lag, like in vanilla)"
+  "text.autoconfig.DontBurnMyStuff.option.minFireProtectionLevelRequired.@Tooltip[0]": "Minimum level of Fire Protection on an item to prevent it from burning",
+  "text.autoconfig.DontBurnMyStuff.option.minFireProtectionLevelRequired.@Tooltip[1]": "0 means items don't burn in general"
 }
