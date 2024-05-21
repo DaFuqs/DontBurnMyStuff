@@ -1,7 +1,8 @@
 package de.dafuqs.dontburnmystuff.mixin;
 
 import de.dafuqs.dontburnmystuff.DontBurnMyStuff;
-import de.dafuqs.dontburnmystuff.config.DontBurnMyStuffConfig;
+import net.minecraft.component.*;
+import net.minecraft.component.type.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.ItemEntity;
@@ -15,15 +16,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemEntityMixin {
 
     @Inject(method= "isFireImmune()Z", at=@At("HEAD"), cancellable = true)
-    private void isFireProof(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-        ItemStack itemStack = ((ItemEntity)(Object) this).getStack();
-
-        if(itemStack != ItemStack.EMPTY) {
+    private void dontburnmystuff$isFireImmune(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+        ItemStack stack = ((ItemEntity)(Object) this).getStack();
+        
+        ItemEnchantmentsComponent component = stack.get(DataComponentTypes.ENCHANTMENTS);
+        if(component != null) {
             int minFireProtectionLevelRequired = DontBurnMyStuff.getMinFireProtectionLevelRequired();
             if(minFireProtectionLevelRequired == 0) {
                 callbackInfoReturnable.setReturnValue(true);
             } else {
-                int fireProtectionLevel = EnchantmentHelper.getLevel(Enchantments.FIRE_PROTECTION, itemStack);
+                int fireProtectionLevel = component.getLevel(Enchantments.FIRE_PROTECTION);
                 if(fireProtectionLevel >= minFireProtectionLevelRequired) {
                     callbackInfoReturnable.setReturnValue(true);
                 }
