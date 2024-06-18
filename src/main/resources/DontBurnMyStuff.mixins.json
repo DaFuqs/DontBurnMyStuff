@@ -4,7 +4,6 @@
   "package": "de.dafuqs.dontburnmystuff.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "EnchantmentMixin",
     "ItemEntityMixin"
   ],
   "client": [
